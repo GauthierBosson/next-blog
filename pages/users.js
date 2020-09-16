@@ -14,7 +14,7 @@ export default function Users() {
       <h1>USERS</h1>
       <ul>
         {data.map(d => (
-            <li key={d.id}>{d.name} {d.email}</li>
+            <li key={d.id}>{d.name}, {d.email}</li>
         ))}
       </ul>
     </div>

@@ -11,6 +11,7 @@
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^6.8.2",
     "serverless-mysql": "^1.5.4",
     "sql-template-strings": "^2.2.2",
     "swr": "^0.3.2"

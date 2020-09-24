@@ -1,13 +1,44 @@
 import { useForm } from "react-hook-form";
-import useSWR, { mutate } from "swr";
+//import { useRouter } from "next/router";
+import { Auth } from "aws-amplify";
 
 export default function Register() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
+  //const router = useRouter()
 
   const onSubmit = async (data) => {
-    await fetch("/api/register", { method: "POST", body: JSON.stringify(data) }).then((res) =>
-      console.log(res)
-    );
+    const { name, email, password } = data;
+    try {
+      const { user } = await Auth.signUp({
+        username: email,
+        password,
+        attributes: {
+          name
+        }
+
+      });
+
+      console.log(user);
+    } catch(err) {
+      console.log('signup error : ', err)
+    }
+
+    console.log(process.env.NEXT_PUBLIC_USER_POOL_WEB_CLIENT_ID)
+
+    // const rawRes = await fetch("/api/register", {
+    //   method: "POST",
+    //   body: JSON.stringify(data),
+    // });
+
+    // const res = await rawRes.json()
+
+    // if (res.code) {
+    //   if (res.code === "ER_DUP_ENTRY") return console.log("Email already taken")
+
+    //   return console.log('an error occured')
+    // }
+
+    // router.push('/login');
   };
 
   return (

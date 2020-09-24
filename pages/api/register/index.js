@@ -1,16 +1,19 @@
-import db from "../../lib/db";
+import db from "../../../lib/db";
+import { passwordHash } from "../../../lib/passwordHelpers";
 const escape = require("sql-template-strings");
 
 export default async (req, res) => {
   const { name, email, password } = JSON.parse(req.body);
 
+  const hashedPassword = await passwordHash(password);
+
   try {
     const newUser = await db.query(escape`
-      INSERT INTO USER (name, email, password) VALUES (${name}, ${email}, ${password})
+      INSERT INTO USER (name, email, password) VALUES (${name}, ${email}, ${hashedPassword})
     `);
 
-    res.status(200).json(newUser);
+    res.status(201).json(newUser);
   } catch (e) {
-    res.status(404).json({ "message": "an error occurred while creating user" });
+    res.status(404).json(e);
   }
 };

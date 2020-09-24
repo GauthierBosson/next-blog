@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     const rawRes = await fetch("/api/login", {
@@ -23,7 +23,7 @@ const Login = () => {
         </label>
         <label>
           Mot de passe
-          <input type="text" name="password" ref={register} />
+          <input type="password" name="password" ref={register} />
         </label>
         <input type="submit" />
       </form>

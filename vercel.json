@@ -3,6 +3,17 @@
     "MYSQL_HOST": "@mysql_host",
     "MYSQL_USER": "@mysql_user",
     "MYSQL_PASSWORD": "@mysql_password",
-    "MYSQL_DATABASE": "@mysql_database"
+    "MYSQL_DATABASE": "@mysql_database",
+    "NEXTAUTH_URL": "@nextauth_url",
+    "COGNITO_CLIENT_ID": "@cognito_client_id",
+    "COGNITO_DOMAIN": "@cognito-domain"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_IDENTITY_POOL_ID": "@identity_pool_id",
+      "NEXT_PUBLIC_REGION": "@region",
+      "NEXT_PUBLIC_USER_POOL_ID": "@user_pool_id",
+      "NEXT_PUBLIC_USER_POOL_WEB_CLIENT_ID": "@user_pool_web_client_id"
+    }
   }
 }

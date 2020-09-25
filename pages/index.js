@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
 
 export default function Home() {
@@ -17,7 +18,9 @@ export default function Home() {
       {!loading && !session && (
         <>
           <p>Not signed in</p>
-          <button onClick={signIn}>Sign in</button>
+          <Link href="/login">
+            <a>Signin</a>
+          </Link>
         </>
       )}
       {session && (

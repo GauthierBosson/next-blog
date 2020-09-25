@@ -9,7 +9,7 @@ export default async (req, res) => {
 
   try {
     const newUser = await db.query(escape`
-      INSERT INTO USER (name, email, password) VALUES (${name}, ${email}, ${hashedPassword})
+      INSERT INTO users (name, email, password) VALUES (${name}, ${email}, ${hashedPassword})
     `);
 
     res.status(201).json(newUser);

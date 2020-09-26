@@ -1,11 +1,14 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-import Link from "next/link";
-import { signOut, useSession } from "next-auth/client";
+import { useSession, getSession } from "next-auth/client";
 
 export default function Home() {
   const [session, loading] = useSession();
+
+  if (typeof window !== "undefined" && loading) return null;
+
+  if (!session) return <p>Access Denied</p>;
 
   return (
     <div className={styles.container}>
@@ -13,22 +16,15 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {loading && !session && <p>Loading</p>}
-      {!loading && !session && (
-        <>
-          <p>Not signed in</p>
-          <Link href="/login">
-            <a>Signin</a>
-          </Link>
-        </>
-      )}
-      {session && (
-        <>
-          <p>Signed in</p>
-          <button onClick={signOut}>Sign out</button>
-        </>
-      )}
+      <p>Access granted</p>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  return {
+    props: { session },
+  };
 }

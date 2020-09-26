@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 // import { Auth } from "aws-amplify";
 
-export default function Register() {
+const Signup = () => {
   const { register, handleSubmit } = useForm();
-  const router = useRouter()
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     // const { name, email, password } = data;
@@ -23,20 +23,21 @@ export default function Register() {
     //   console.log('signup error : ', err)
     // }
 
-    const rawRes = await fetch("/api/register", {
+    const rawRes = await fetch("/api/signup", {
       method: "POST",
       body: JSON.stringify(data),
     });
 
-    const res = await rawRes.json()
+    const res = await rawRes.json();
 
     if (res.code) {
-      if (res.code === "ER_DUP_ENTRY") return console.log("Email already taken")
+      if (res.code === "ER_DUP_ENTRY")
+        return console.log("Email already taken");
 
-      return console.log('an error occured')
+      return console.log("an error occured");
     }
 
-    router.push('/login');
+    router.push("/auth/signin");
   };
 
   return (
@@ -62,4 +63,6 @@ export default function Register() {
       </form>
     </div>
   );
-}
+};
+
+export default Signup;

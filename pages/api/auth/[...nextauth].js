@@ -64,7 +64,7 @@ const options = {
   },
 
   pages: {
-    signIn: "/auth/login",
+    signIn: "/auth/signin",
   },
 };
 

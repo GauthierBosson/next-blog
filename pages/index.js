@@ -1,14 +1,18 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import { useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+import { signOut } from "next-auth/client";
 
-import { useSession, getSession } from "next-auth/client";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [session, loading] = useSession();
+  const router = useRouter();
 
   if (typeof window !== "undefined" && loading) return null;
 
-  if (!session) return <p>Access Denied</p>;
+  if (typeof window !== "undefined" && !loading && !session)
+    router.push("/auth/signin");
 
   return (
     <div className={styles.container}>
@@ -17,14 +21,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <p>Access granted</p>
+      <button onClick={signOut}>Sign out</button>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
-
-  return {
-    props: { session },
-  };
 }

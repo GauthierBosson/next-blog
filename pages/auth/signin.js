@@ -1,6 +1,6 @@
 import { csrfToken } from "next-auth/client";
 
-const Login = ({ csrfToken }) => {
+const Signin = ({ csrfToken }) => {
   return (
     <div>
       <form method="POST" action="/api/auth/callback/credentials">
@@ -29,4 +29,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default Login;
+export default Signin;

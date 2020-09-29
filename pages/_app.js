@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import UserContext from "../lib/context/UserContext";
 
 import { SWRConfig } from "swr";
 // import Amplify from "aws-amplify";
@@ -17,24 +16,17 @@ import { Provider } from "next-auth/client";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <UserContext.Provider
+    <SWRConfig
       value={{
-        name: null,
-        email: null,
+        refreshInterval: 3000,
+        fetcher: async (resource, init) =>
+          await fetch(resource, init).then((res) => res.json()),
       }}
     >
-      <SWRConfig
-        value={{
-          refreshInterval: 3000,
-          fetcher: async (resource, init) =>
-            await fetch(resource, init).then((res) => res.json()),
-        }}
-      >
-        <Provider session={pageProps.session}>
-          <Component {...pageProps} />
-        </Provider>
-      </SWRConfig>
-    </UserContext.Provider>
+      <Provider session={pageProps.session}>
+        <Component {...pageProps} />
+      </Provider>
+    </SWRConfig>
   );
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import db from "../../../lib/db";
@@ -65,6 +66,21 @@ const options = {
 
   pages: {
     signIn: "/auth/signin",
+  },
+
+  callbacks: {
+    jwt: async (token, user, account, profile, isNewUser) => {
+      const isSignIn = user ? true : false;
+      
+      if (isSignIn) token.isPremium = profile.premium;
+
+      return Promise.resolve(token);
+    },
+
+    session: async (session, user, sessionToken) => {
+      session.user.isPremium = user.isPremium;
+      return Promise.resolve(session);
+    }
   },
 };
 

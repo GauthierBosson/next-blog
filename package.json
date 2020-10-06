@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint src/**/*.js && eslint pages/**/*.js",
+    "lint:fix": "eslint --fix src/**/*js && eslint --fix pages/**/*.js"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
@@ -24,12 +26,33 @@
     "react-hook-form": "^6.8.2",
     "serverless-mysql": "^1.5.4",
     "sql-template-strings": "^2.2.2",
+    "styled-components": "^5.2.0",
     "swr": "^0.3.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-styled-components": "^1.11.1",
     "eslint": "^7.9.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "jsx-a11y/anchor-is-valid": "off"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run lint:fix"
+    }
   }
 }

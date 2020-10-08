@@ -1,18 +1,10 @@
-import "../styles/globals.css";
-
 import { SWRConfig } from "swr";
-// import Amplify from "aws-amplify";
 import { Provider } from "next-auth/client";
+import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 
-// Amplify.configure({
-//   Auth: {
-//     identityPoolID: process.env.NEXT_PUBLIC_IDENTITY_POOL_ID,
-//     region: process.env.NEXT_PUBLIC_REGION,
-//     userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
-//     userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_WEB_CLIENT_ID,
-//   },
-//   ssr: true,
-// });
+import "../styles/globals.css";
+import Navbar from "../src/components/navbar/Navbar";
+import theme from "../theme";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -24,7 +16,11 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <Provider session={pageProps.session}>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <CSSReset />
+          <Navbar />
+          <Component {...pageProps} />
+        </ThemeProvider>
       </Provider>
     </SWRConfig>
   );

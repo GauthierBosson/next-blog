@@ -1,32 +1,11 @@
-import { csrfToken } from "next-auth/client";
+import { Flex } from "@chakra-ui/core";
 
-const Signin = ({ csrfToken }) => {
-  return (
-    <div>
-      <form method="POST" action="/api/auth/callback/credentials">
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-        <label>
-          Email
-          <input type="text" name="email" />
-        </label>
-        <label>
-          Mot de passe
-          <input type="password" name="password" />
-        </label>
-        <input type="submit" />
-      </form>
-    </div>
-  );
-};
+import SigninForm from "../../src/components/signinForm/SigninForm";
 
-export async function getServerSideProps(context) {
-  const data = await csrfToken(context);
-
-  return {
-    props: {
-      csrfToken: data,
-    },
-  };
-}
+const Signin = () => (
+  <Flex height="calc(100vh - 70px)" align="center" justify="center">
+    <SigninForm />
+  </Flex>
+);
 
 export default Signin;

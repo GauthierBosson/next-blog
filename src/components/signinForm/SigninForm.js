@@ -29,7 +29,7 @@ const SignupForm = () => {
   }
 
   return (
-    <Box borderWidth="1px" rounded="md" p={4}>
+    <Box bg="white" borderWidth="1px" rounded="md" p={4}>
       {signup ? <p>Inscription réussi, vous pouvez vous connecter</p> : null}
       <form onSubmit={handleSubmit(onSubmit)} >
         <FormControl mb={4} isInvalid={errors.email}>

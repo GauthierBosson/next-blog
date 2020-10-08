@@ -1,5 +1,12 @@
-import { Text } from "@chakra-ui/core"
+import { Text } from "@chakra-ui/core";
+import Link from "next/link";
 
-const Logo = () => <Text color="black">DEV LOG</Text>;
+const Logo = () => (
+  <Link href="/">
+    <a>
+      <Text color="black">DEV LOG</Text>
+    </a>
+  </Link>
+);
 
 export default Logo;

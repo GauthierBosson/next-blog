@@ -34,7 +34,7 @@ const SignupForm = () => {
   };
 
   return (
-    <Box borderWidth="1px" rounded="md" p={4}>
+    <Box bg="white" borderWidth="1px" rounded="md" p={4}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl mb={4} isInvalid={errors.name}>
           <FormLabel htmlFor="name">Nom</FormLabel>

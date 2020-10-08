@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Flex height="70px" paddingX={3} align="center" justify="space-between">
+      <Flex height="70px" maxW="80rem" m="0 auto" paddingX={3} align="center" justify="space-between">
         <Logo />
         {loading ? (
           <Skeleton height="50px" width="50px" borderRadius="50%" />

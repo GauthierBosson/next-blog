@@ -2,13 +2,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { signOut } from "next-auth/client"
 
-import styles from "../styles/Home.module.css";
-
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Home | Dev Log</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>INDEX</h1>

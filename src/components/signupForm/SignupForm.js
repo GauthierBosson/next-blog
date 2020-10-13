@@ -79,7 +79,7 @@ const SignupForm = () => {
             Les deux mots de passe ne sont pas identiques
           </FormErrorMessage>
         </FormControl>
-        <Button variantColor="blue" type="submit">Valider</Button>
+        <Button colorScheme="blue" type="submit">Valider</Button>
       </form>
     </Box>
   );

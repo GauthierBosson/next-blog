@@ -6,7 +6,6 @@ import { passwordVerify } from "../../../lib/passwordHelpers";
 const escape = require("sql-template-strings");
 
 const options = {
-  // Configure one or more authentication providers
   providers: [
     Providers.Credentials({
       name: "Credentials",
@@ -42,10 +41,8 @@ const options = {
       clientId: process.env.COGNITO_CLIENT_ID,
       domain: process.env.COGNITO_DOMAIN,
     }),
-    // ...add more providers here
   ],
 
-  // A database is optional, but required to persist accounts in a database
   database: {
     type: "mysql",
     host: process.env.MYSQL_HOST,
@@ -71,16 +68,26 @@ const options = {
   callbacks: {
     jwt: async (token, user, account, profile, isNewUser) => {
       const isSignIn = user ? true : false;
-      
-      if (isSignIn) token.isPremium = profile.premium;
+
+      if (isSignIn) {
+        token.isPremium = profile.premium;
+        token.stripeId = profile.stripe_id;
+      }
 
       return Promise.resolve(token);
     },
 
     session: async (session, user, sessionToken) => {
       session.user.isPremium = user.isPremium;
+
+      if (user.stripeId === null) {
+        session.user.stripeId = null;
+      } else {
+        session.user.stripeId = user.stripeId;
+      }
+
       return Promise.resolve(session);
-    }
+    },
   },
 };
 

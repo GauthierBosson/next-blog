@@ -53,7 +53,7 @@ const SignupForm = () => {
           />
           <FormErrorMessage>Veuillez renseigner votre mot de passe</FormErrorMessage>
         </FormControl>
-        <Button variantColor="blue" type="submit">
+        <Button colorScheme="blue" type="submit">
           Valider
         </Button>
       </form>

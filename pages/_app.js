@@ -1,6 +1,6 @@
 import { SWRConfig } from "swr";
 import { Provider } from "next-auth/client";
-import { ThemeProvider, CSSReset } from "@chakra-ui/core";
+import { ChakraProvider } from "@chakra-ui/core";
 
 import "../styles/globals.css";
 import Navbar from "../src/components/navbar/Navbar";
@@ -16,11 +16,10 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <Provider session={pageProps.session}>
-        <ThemeProvider theme={theme}>
-          <CSSReset />
+        <ChakraProvider resetCSS={true} theme={theme}>
           <Navbar />
           <Component {...pageProps} />
-        </ThemeProvider>
+        </ChakraProvider>
       </Provider>
     </SWRConfig>
   );

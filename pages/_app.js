@@ -1,6 +1,6 @@
 import { SWRConfig } from "swr";
 import { Provider } from "next-auth/client";
-import { ChakraProvider } from "@chakra-ui/core";
+import { ChakraProvider, Box } from "@chakra-ui/core";
 
 import "../styles/globals.css";
 import Navbar from "../src/components/navbar/Navbar";
@@ -18,7 +18,11 @@ function MyApp({ Component, pageProps }) {
       <Provider session={pageProps.session}>
         <ChakraProvider resetCSS={true} theme={theme}>
           <Navbar />
-          <Component {...pageProps} />
+          <Box as="main" bg="gray.50" height="auto">
+            <Box maxW="80rem" m="0 auto">
+              <Component {...pageProps} />
+            </Box>
+          </Box>
         </ChakraProvider>
       </Provider>
     </SWRConfig>

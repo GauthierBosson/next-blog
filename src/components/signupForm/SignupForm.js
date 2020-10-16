@@ -36,19 +36,19 @@ const SignupForm = () => {
   return (
     <Box bg="white" borderWidth="1px" rounded="md" p={4}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl mb={4} isInvalid={errors.name}>
+        <FormControl mb={4} isInvalid={errors.name} isRequired>
           <FormLabel htmlFor="name">Nom</FormLabel>
           <Input id="name" type="text" name="name" ref={register({ required: true })} />
           <FormErrorMessage>Veuillez entrer votre nom</FormErrorMessage>
         </FormControl>
 
-        <FormControl mb={4} isInvalid={errors.email}>
+        <FormControl mb={4} isInvalid={errors.email} isRequired>
           <FormLabel htmlFor="email">Email</FormLabel>
           <Input id="email" type="email" name="email" ref={register({ required: true })} />
           <FormErrorMessage>Un email valide est requis</FormErrorMessage>
         </FormControl>
 
-        <FormControl mb={4} isInvalid={errors.password}>
+        <FormControl mb={4} isInvalid={errors.password} isRequired>
           <FormLabel htmlFor="password">Mot de passe</FormLabel>
           <Input
             id="password"

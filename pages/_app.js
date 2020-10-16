@@ -18,8 +18,8 @@ function MyApp({ Component, pageProps }) {
       <Provider session={pageProps.session}>
         <ChakraProvider resetCSS={true} theme={theme}>
           <Navbar />
-          <Box as="main" bg="gray.50" height="auto">
-            <Box maxW="80rem" m="0 auto">
+          <Box as="main" bg="bg.gray" height="auto" mt="70px">
+            <Box m="0 auto">
               <Component {...pageProps} />
             </Box>
           </Box>

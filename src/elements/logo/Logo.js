@@ -4,7 +4,7 @@ import Link from "next/link";
 const Logo = () => (
   <Link href="/">
     <a>
-      <Text color="black">DEV LOG</Text>
+      <Text color="blue.700">DEV LOG</Text>
     </a>
   </Link>
 );

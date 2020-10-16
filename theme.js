@@ -1,5 +1,16 @@
-import { theme } from "@chakra-ui/core";
+import { extendTheme } from "@chakra-ui/core";
 
-export default {
-  ...theme
-}
+const theme = extendTheme({
+  colors: {
+    bg: {
+      gray: "#E4E6EB"
+    }
+  },
+  radii: {
+    card: {
+      default: "1rem"
+    }
+  }
+})
+
+export default theme
